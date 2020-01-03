@@ -91,7 +91,12 @@ function searchFor(query,page,count) {
       var r='<table>';
       $.each(data.items, function(i,item){
         var prefix = tagMap[item.tag];
-        if (prefix) prefix+='/'; else prefix='';
+          if (prefix) {
+	      prefix = '//' + window.location.host + '/' + prefix;
+	      prefix+='/'
+	  }
+	  else
+	      prefix='';
         r+='<tr class="searchresult">'+
            '<td align="right">'+(data.first+i+1)+'.</td>'+
            '<td>'+escapeHtml(item.type)+'&#160;'+
